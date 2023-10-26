@@ -1,0 +1,38 @@
+{% extends "library/index.html" %}
+
+{% load static %}
+
+{% block body %}
+    <style>
+        .site-form input,
+        .site-form textarea {
+            display: block;
+            margin: 20px 0 0 0;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            width: 100%;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+        
+        .site-form {
+            display: block;
+            margin: auto;
+            margin-top: -2.6rem;
+            padding: 20px;
+            border-radius: 4px;
+            background-color: White;
+        }
+    </style>
+    
+    
+    <form class="site-form" action="{% url 'accounts:login' %}" method="post">
+        <center>
+            <img style= "margin:auto;"  src="{% static 'img/logo.png' %}">
+        </center>
+        {% csrf_token %} {{ form }} {% if request.GET.next %}
+        <input type="hidden" name="next" value="{{ request.GET.next }}"> {% endif %}
+        <input class = "btn btn-primary" type="submit" value="Login">
+    </form>
+{% endblock %}

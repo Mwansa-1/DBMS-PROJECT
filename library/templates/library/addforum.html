@@ -1,0 +1,42 @@
+{% extends "library/index.html" %}
+
+{% load static %}
+
+{% block body %}
+
+<div class="container">
+    <section class="py-4 py-xl-5">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+                    <div class="card mb-5">
+                        <div class="card-body p-sm-5">
+                            <h2 class="text-center mb-4">&nbsp;Forum Post</h2>
+                            <form class="site-form"  method="post" action = "{% url 'addforum' %}">
+                                
+                                {% csrf_token %}
+                                {{form}}
+                                <input class = "btn btn-primary" type="submit" value="Add">
+                                {% comment %} <select style="border-top-left-radius: 5px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;padding: 5px;border-style: none;" required="">
+                                    <optgroup label="Topic">
+                                        <option value="{{forum.topic}}" selected="">Engineering</option>
+                                        <option value="{{forum.topic}}">Humanities</option>
+                                        <option value="{{forum.topic}}">Business</option>
+                                        <option value="{{forum.topic}}">Law</option>
+                                        <option value="{{forum.topic}}">Medicine</option>
+                                    </optgroup>
+                                </select>
+                                <div class="mb-3"></div>
+                                <div class="mb-3"><input class="form-control" type="text" id="title" name="title" placeholder="Title" value="{{ forum.title }}"></div>
+                                <div class="mb-3"><textarea class="form-control" type="text" id="content" name="content" rows="6" placeholder="Content" value="{{ forum.content }}" ></textarea></div> {% endcomment %}
+                               
+                            </form>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

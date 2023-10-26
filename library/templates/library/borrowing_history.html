@@ -1,0 +1,30 @@
+{% extends "library/layout.html" %}
+{% load static %}
+
+{% block body %}
+<div class="container">
+    <h2>Your Borrowing History</h2>
+
+     
+         
+             
+   
+        {% for entry in borrowing_history %}
+         
+             {{ entry.book.title }}
+             <br>
+             {{ entry.book.author }} 
+             <br>
+             {{ entry.borrowed_date }} 
+             <br>
+             {{ entry.due_date }} 
+             <br>
+             {{ entry.return_date }} 
+         
+
+        <hr>
+        {% endfor %}
+    
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+{% endblock %}

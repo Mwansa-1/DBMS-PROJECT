@@ -1,0 +1,192 @@
+{% extends "library/layout.html" %}
+{% load static %}
+
+{% block body %}
+<div class="container">
+    <div>
+        <ul class="nav nav-tabs border-0 d-flex flex-row flex-fill" role="tablist" style="margin-left: 0px;">
+            <li class="nav-item border rounded border-0" role="presentation" style="margin-left: 3px;"><a class="nav-link active" role="tab" data-bs-toggle="tab" href="#tab-1">All</a></li>
+            <li class="nav-item border rounded border-0" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-2">Engineering&nbsp;</a></li>
+            <li class="nav-item border rounded border-0" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-3">Medicine</a></li>
+            <li class="nav-item border rounded border-0" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-4">Humanities</a></li>
+            <li class="nav-item border rounded border-0" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-5">Business</a></li>
+            <li class="nav-item border rounded border-0" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-6">Law</a></li>
+        </ul>
+        <form action="{% url 'search' %}" method="get">
+            {{ form.as_p }}
+            <button class="btn btn-outline-primary"  type="submit">Search</button>
+        </form>
+        
+        <div class="tab-content">
+            <div class="tab-pane active" role="tabpanel" id="tab-1">
+                <div class="row">
+                    
+                {% for book in books %}
+                <a href ="{% url 'book_details' id=book.id%}">
+                    <div class="col-md-6">
+                        <div class="card" style="margin-bottom: 1rem;margin-top: 1rem;"><img src = {{ book.book_picture }} class="card-img-top w-100 d-block">
+                            <div class="card-body">
+                                <h4 class="card-title">{{ book.title }}</h4>
+                                <p class="card-text">{{ book.author }}</p>
+                                <p class="card-text">{{ book.genre }}</p>
+                                
+                                {% if user.is_authenticated %}
+                                <form method="post" action="{% url 'add_to_cart' book.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-primary">Borrow</button>
+                                </form>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                    {% empty %}
+                    No books
+                {% endfor %}
+                    
+                </div>
+            </div>
+            <div class="tab-pane" role="tabpanel" id="tab-2">
+                <div class="row">
+                   
+                    
+                    {% for book in books %}
+                        {% if book.genre == "Engineering" %}
+                        <div class="col-md-6">
+                            <div class="card" style="margin-bottom: 1rem;margin-top: 1rem;"><img src = {{ book.book_picture }} class="card-img-top w-100 d-block">
+                                <div class="card-body">
+                                    <h4 class="card-title">{{ book.title }}</h4>
+                                    <p class="card-text">{{ book.author }}</p>
+                                    <p class="card-text">{{ book.genre }}</p>
+                                    {% if user.is_authenticated %}
+                                    <form method="post" action="{% url 'add_to_cart' book.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-primary">Borrow</button>
+                                    </form>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% empty %}
+                        No books
+                    {% endfor %}
+                        
+                    </div>
+            </div>
+            <div class="tab-pane" role="tabpanel" id="tab-3">
+                <div class="row">
+                   
+                    
+                    {% for book in books %}
+                        {% if book.genre == "Medicine" %}
+                        <div class="col-md-6">
+                            <div class="card" style="margin-bottom: 1rem;margin-top: 1rem;"><img src = {{ book.book_picture }} class="card-img-top w-100 d-block">
+                                <div class="card-body">
+                                    <h4 class="card-title">{{ book.title }}</h4>
+                                    <p class="card-text">{{ book.author }}</p>
+                                    <p class="card-text">{{ book.genre }}</p>
+                                    {% if user.is_authenticated %}
+                                    <form method="post" action="{% url 'add_to_cart' book.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-primary">Borrow</button>
+                                    </form>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% empty %}
+                        No books
+                    {% endfor %}
+                        
+                    </div>
+            </div>
+            <div class="tab-pane" role="tabpanel" id="tab-4">
+                <div class="row">
+                   
+                    
+                    {% for book in books %}
+                        {% if book.genre == "Humanities" %}
+                        <div class="col-md-6">
+                            <div class="card" style="margin-bottom: 1rem;margin-top: 1rem;"><img src = {{ book.book_picture }} class="card-img-top w-100 d-block">
+                                <div class="card-body">
+                                    <h4 class="card-title">{{ book.title }}</h4>
+                                    <p class="card-text">{{ book.author }}</p>
+                                    <p class="card-text">{{ book.genre }}</p>
+                                    {% if user.is_authenticated %}
+                                <form method="post" action="{% url 'add_to_cart' book.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-primary">Borrow</button>
+                                </form>
+                                {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% empty %}
+                        No books
+                    {% endfor %}
+                        
+                    </div>
+            </div>
+            <div class="tab-pane" role="tabpanel" id="tab-5">
+                <div class="row">
+                   
+                    
+                    {% for book in books %}
+                        {% if book.genre == "Business" %}
+                        <div class="col-md-6">
+                            <div class="card" style="margin-bottom: 1rem;margin-top: 1rem;"><img src = {{ book.book_picture }} class="card-img-top w-100 d-block">
+                                <div class="card-body">
+                                    <h4 class="card-title">{{ book.title }}</h4>
+                                    <p class="card-text">{{ book.author }}</p>
+                                    <p class="card-text">{{ book.genre }}</p>
+                                    {% if user.is_authenticated %}
+                                    <form method="post" action="{% url 'add_to_cart' book.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-primary">Borrow</button>
+                                    </form>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% empty %}
+                        No books
+                    {% endfor %}
+                        
+                    </div>
+            </div>
+            <div class="tab-pane" role="tabpanel" id="tab-6">
+                <div class="row">
+                   
+                    
+                    {% for book in books %}
+                        {% if book.genre == "Law" %}
+                        <div class="col-md-6">
+                            <div class="card" style="margin-bottom: 1rem;margin-top: 1rem;"><img src = {{ book.book_picture }} class="card-img-top w-100 d-block">
+                                <div class="card-body">
+                                    <h4 class="card-title">{{ book.title }}</h4>
+                                    <p class="card-text">{{ book.author }}</p>
+                                    <p class="card-text">{{ book.genre }}</p>
+                                    {% if user.is_authenticated %}
+                                <form method="post" action="{% url 'add_to_cart' book.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-primary">Borrow</button>
+                                </form>
+                                {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% empty %}
+                        No books
+                    {% endfor %}
+                        
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

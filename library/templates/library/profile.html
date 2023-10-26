@@ -1,0 +1,41 @@
+{% extends "library/layout.html" %}
+{% load static %}
+
+{% block body %}
+<div class="container d-sm-flex d-md-flex d-lg-flex flex-row flex-sm-row flex-md-row flex-xl-column">
+    <div><i class="fa fa-user-circle" style="font-size: 108px;"></i></div>
+    <br>
+    <div>
+        {{ user.username }}
+        <br>
+
+        {{ user.email }}
+        <br>
+        {{ user.first_name }} {{ user.last_name }}
+        
+        
+    </div>
+</div>
+<hr>
+<div class="container">
+    <h1 style="margin-top: 1rem;">Borrowed Books</h1>
+    {% for entry in borrowing_history %}
+         
+    {{ entry.book.title }}
+    <br>
+    {{ entry.book.author }} 
+    <br>
+    Borrowed date : {{ entry.borrowed_date }} 
+    <br>
+    Due date : {{ entry.due_date }} 
+    <br>
+   
+
+
+    <hr>
+    {% endfor %}
+        
+    </div>
+</div>
+<br><br><br><br><br><br><br>
+{% endblock %}

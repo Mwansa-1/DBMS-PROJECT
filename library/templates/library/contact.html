@@ -1,0 +1,10 @@
+{% extends "library/layout.html" %}
+{% load static %}
+
+{% block body %}
+<form class = "site-form" action="{% url 'contact' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input class="btn btn-primary " type="submit" value="Send">
+</form>
+{% endblock %}

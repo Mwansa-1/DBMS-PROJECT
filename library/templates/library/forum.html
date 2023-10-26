@@ -1,0 +1,129 @@
+{% extends "library/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+<div class="container">
+    <div>
+        <ul class="nav nav-tabs border-0 d-flex flex-row flex-fill" role="tablist" style="margin-left: 0px;">
+            <li class="nav-item border rounded border-0" role="presentation" style="margin-left: 3px;"><a class="nav-link active" role="tab" data-bs-toggle="tab" href="#tab-1">All</a></li>
+            <li class="nav-item border rounded border-0" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-2">Engineering&nbsp;</a></li>
+            <li class="nav-item border rounded border-0" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-3">Medicine</a></li>
+            <li class="nav-item border rounded border-0" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-4">Humanities</a></li>
+            <li class="nav-item border rounded border-0" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-5">Business</a></li>
+            <li class="nav-item border rounded border-0" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-6">Law</a></li>
+        </ul>
+        <form action="{% url 'search_forum' %}" method="get">
+            {{ form.as_p }}
+            <button class="btn btn-outline-primary"  type="submit">Search</button>
+        </form>
+        <a href = {% url 'addforum'%} >
+
+            <button class="btn btn-primary fixed-bottom" type="button" style="  z-index: 2; margin-top: 1rem;box-shadow: 0px 0px;position: sticky;display: block;margin-bottom: 1rem; border-radius: 50%;"><strong>+</strong></button>
+        
+        </a>
+        <div class="tab-content">
+            <div class="tab-pane active" role="tabpanel" id="tab-1">
+                {% for forum in forums %}
+                <a href ="{% url 'forum_details' id=forum.forumid%}">
+                <div class="card" style = " margin-bottom : 1rem; margin-top: 1rem;">
+                    <div class="card-body">
+                        <h4 class="card-title">{{forum.title}}</h4>
+                        <p class="card-text"> By : {{ forum.user }} </p>
+                        <p class="card-text"> {{ forum.tiimestamp }} </p>
+                        <a class="card-link" href="#">Read more</a>
+                    </div>
+                </div>
+            </a>
+                {% endfor %}
+            </div>
+            <div class="tab-pane" role="tabpanel" id="tab-2">
+                {% for forum in forums %}
+                <a href ="{% url 'forum_details' id=forum.forumid%}">
+                {% if forum.topic == "Engineering" %}
+                <div class="card">
+                    <div class="card-body" style="margin-top: 1rem;margin-top: 1rem; margin-bottom: 1rem;">
+                        <h4 class="card-title">{{forum.title}}</h4>
+                        <p class="card-text"> By : {{ forum.user }} </p>
+                        <p class="card-text"> {{ forum.tiimestamp }} </p>
+                        <a class="card-link" href="#">Read more</a>
+                    </div>
+                </div>
+                {% endif %}
+            </a>
+                {% endfor %}
+            </div>
+            <div class="tab-pane" role="tabpanel" id="tab-3">
+                {% for forum in forums %}
+                <a href ="{% url 'forum_details' id=forum.forumid%}">
+
+                {% if forum.topic == "Medicine" %}
+                <div class="card">
+                    <div class="card-body" style="margin-top: 1rem; margin-bottom: 1rem;">
+                        <h4 class="card-title">{{forum.title}}</h4>
+                        <p class="card-text"> By:  {{ forum.user }}  </p>
+                        <p class="card-text"> {{ forum.tiimestamp }} </p>
+                        <a class="card-link" href="#">Read more</a>
+                    </div>
+                </div>
+                {% endif %}
+            </a>
+                {% endfor %}
+            </div>
+            <div class="tab-pane" role="tabpanel" id="tab-4">
+                {% for forum in forums %}
+                <a href ="{% url 'forum_details' id=forum.forumid%}">
+
+                {% if forum.topic == "Humanities" %}
+                <div class="card">
+                    <div class="card-body" style="margin-top: 1rem; margin-bottom: 1rem;">
+                        <h4 class="card-title">{{forum.title}}</h4>
+                        <p class="card-text"> By:  {{ forum.user }}  </p>
+                        <p class="card-text"> {{ forum.tiimestamp }} </p>
+                        <a class="card-link" href="#">Read more</a>
+                    </div>
+                </div>
+                {% endif %}
+            </a>
+                {% endfor %}
+            </div>
+            <div class="tab-pane" role="tabpanel" id="tab-5">
+                {% for forum in forums %}
+                <a href ="{% url 'forum_details' id=forum.forumid%}">
+
+                {% if forum.topic == "Business" %}
+                <div class="card">
+                    <div class="card-body" style="margin-top: 1rem; margin-bottom: 1rem;">
+                        <h4 class="card-title">{{forum.title}}</h4>
+                        <p class="card-text"> By:  {{ forum.user }}  </p>
+                        <p class="card-text"> {{ forum.tiimestamp }} </p>
+                        <a class="card-link" href="#">Read more</a>
+                    </div>
+                </div>
+                {% endif %}
+            </a>
+                {% endfor %}
+            </div>
+            <div class="tab-pane" role="tabpanel" id="tab-6">
+                {% for forum in forums %}
+                <a href ="{% url 'forum_details' id=forum.forumid%}">
+
+                {% if forum.topic == "Law" %}
+                <div class="card">
+                    <div class="card-body" style="margin-top: 1rem; margin-bottom: 1rem;">
+                        <h4 class="card-title">{{forum.title}}</h4>
+                        <p class="card-text">By:  {{ forum.user }}  </p>
+                        <p class="card-text"> {{ forum.tiimestamp }} </p>
+                        <a class="card-link" href="#">Read more</a>
+                    </div>
+                </div>
+                {% endif %}
+            </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

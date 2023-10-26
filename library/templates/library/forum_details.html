@@ -1,0 +1,64 @@
+{% extends "library/layout.html" %}
+{% load static %}
+
+{% block body %}
+<div class="container">
+    <h1> {{forum.title}} </h1>
+    <div>
+        <p> {{ forum.content }} </p>
+    </div>
+    <hr style="width: 100%;">
+    <h6>Comments</h6>
+    
+    <div>
+        <p> {{ comment.forumid }} </p>
+      
+        {% for cm in comment %}
+            <p> {{ cm.user }} </p>
+            <p> {{ cm.comments }} </p>
+            {% if comment.user == user %}
+            <form class="site-form" method="post" action="{% url 'delete_comment' comment_id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+             {% endif %}
+
+            <hr style="width: 60px;">
+            {% empty %}
+            <p> No Comments </p>
+        {% endfor %}
+
+
+    </div>
+
+    {% comment %} <form action="{% url 'forum_details' forum.forumid %}" method="post">
+        {% csrf_token %}
+    <div class="d-flex"  style="width: 100%;padding: 5px; background-color: white; border-radius:20px; gap: 2px ">
+        <div><input value="{{ comment.comment }}" class="border rounded border-0" type="text" placeholder="Add comment" name="comment"></div>
+        <div><i class="material-icons" style="margin-left: 1rem;"> <input type="submit" value="send" > </i></div>
+    </div>
+    </form> {% endcomment %}
+    {% if user.is_authenticated %}
+    <form class = "site-form" action="{% url 'forum_details' id=forum.forumid %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Add Comment">
+    </form>
+    {% endif %}
+</div>
+<br>
+
+
+
+{% comment %} <form action="{% url 'book' flight.id %}" method="post">
+        {% csrf_token %}
+       <select name="passenger" >
+            {% for passenger in non_passengers %}
+                <option value="{{ passenger.id }}">{{ passenger }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Book">
+       </selector>
+
+    </form> {% endcomment %}
+{% endblock %}
